@@ -35,7 +35,7 @@ public sealed class FormattedImage : IDisposable
     /// <param name="image">The image.</param>
     /// <param name="format">The format.</param>
     /// <param name="keepOpen">Whether to keep the source image open upon disposing the <see cref="FormattedImage"/> object.</param>
-    private FormattedImage(Image image, IImageFormat format, bool keepOpen)
+    public FormattedImage(Image image, IImageFormat format, bool keepOpen)
     {
         this.Image = image;
         this.imageFormatsManager = image.GetConfiguration().ImageFormatsManager;

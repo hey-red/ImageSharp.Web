@@ -28,6 +28,7 @@ public class ImageSharpMiddlewareOptions
 
     private Func<ImageCommandContext, Task> onParseCommandsAsync = _ => Task.CompletedTask;
     private Func<ImageCommandContext, Configuration, Task<DecoderOptions?>> onBeforeLoadAsync = (_, _) => Task.FromResult<DecoderOptions?>(null);
+    private Func<ImageCommandContext, DecoderOptions, Stream, bool, Task<FormattedImage?>> onLoadAsync = (_, _, _, _) => Task.FromResult(default(FormattedImage));
     private Func<FormattedImage, Task> onBeforeSaveAsync = _ => Task.CompletedTask;
     private Func<ImageProcessingContext, Task> onProcessedAsync = _ => Task.CompletedTask;
     private Func<HttpContext, Task> onPrepareResponseAsync = _ => Task.CompletedTask;
@@ -126,6 +127,17 @@ public class ImageSharpMiddlewareOptions
         {
             Guard.NotNull(value, nameof(this.OnBeforeLoadAsync));
             this.onBeforeLoadAsync = value;
+        }
+    }
+
+    public Func<ImageCommandContext, DecoderOptions, Stream, bool, Task<FormattedImage?>> OnLoadAsync
+    {
+        get => this.onLoadAsync;
+
+        set
+        {
+            Guard.NotNull(value, nameof(this.OnLoadAsync));
+            this.onLoadAsync = value;
         }
     }
 

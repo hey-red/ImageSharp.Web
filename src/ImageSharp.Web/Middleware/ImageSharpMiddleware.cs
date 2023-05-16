@@ -359,13 +359,18 @@ public class ImageSharpMiddleware
                                 IReadOnlyList<(int Index, IImageWebProcessor Processor)> sortedProcessors = this.processors.OrderBySupportedCommands(commands);
                                 bool requiresAlpha = sortedProcessors.RequiresTrueColorPixelFormat(commands, this.commandParser, this.parserCulture);
 
-                                if (requiresAlpha)
+                                image = await this.options.OnLoadAsync(imageCommandContext, decoderOptions, inStream, requiresAlpha);
+
+                                if (image is null)
                                 {
-                                    image = await FormattedImage.LoadAsync<Rgba32>(decoderOptions, inStream);
-                                }
-                                else
-                                {
-                                    image = await FormattedImage.LoadAsync(decoderOptions, inStream);
+                                    if (requiresAlpha)
+                                    {
+                                        image = await FormattedImage.LoadAsync<Rgba32>(decoderOptions, inStream);
+                                    }
+                                    else
+                                    {
+                                        image = await FormattedImage.LoadAsync(decoderOptions, inStream);
+                                    }
                                 }
 
                                 image.Process(
