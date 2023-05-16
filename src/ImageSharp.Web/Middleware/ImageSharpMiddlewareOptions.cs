@@ -130,6 +130,9 @@ public class ImageSharpMiddlewareOptions
         }
     }
 
+    /// <summary>
+    /// Gets or sets the method that can be used to change decoding behaviour.
+    /// </summary>
     public Func<ImageCommandContext, DecoderOptions, Stream, bool, Task<FormattedImage?>> OnLoadAsync
     {
         get => this.onLoadAsync;
