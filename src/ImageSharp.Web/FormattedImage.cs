@@ -2,9 +2,9 @@
 // Licensed under the Six Labors Split License.
 
 using System.Diagnostics.CodeAnalysis;
-using SixLabors.ImageSharp.Advanced;
 using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.Metadata.Profiles.Exif;
+using SixLabors.ImageSharp.PixelFormats;
 
 namespace SixLabors.ImageSharp.Web;
 
@@ -38,7 +38,7 @@ public sealed class FormattedImage : IDisposable
     public FormattedImage(Image image, IImageFormat format, bool keepOpen)
     {
         this.Image = image;
-        this.imageFormatsManager = image.GetConfiguration().ImageFormatsManager;
+        this.imageFormatsManager = image.Configuration.ImageFormatsManager;
         this.format = format;
         this.encoder = this.imageFormatsManager.GetEncoder(format);
         this.keepOpen = keepOpen;
@@ -127,7 +127,7 @@ public sealed class FormattedImage : IDisposable
     internal void Save(Stream destination) => this.Image.Save(destination, this.encoder);
 
     /// <summary>
-    /// Gets the EXIF orientation metata for the <see cref="FormattedImage"/>.
+    /// Gets the EXIF orientation metadata for the <see cref="FormattedImage"/>.
     /// </summary>
     /// <param name="value">
     /// When this method returns, contains the value parsed from decoded EXIF metadata; otherwise,
