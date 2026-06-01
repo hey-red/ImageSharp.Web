@@ -50,6 +50,7 @@ public class ImageSharpMiddlewareOptions
     private Func<FormattedImage, Task> onBeforeSaveAsync = _ => Task.CompletedTask;
     private Func<ImageProcessingContext, Task> onProcessedAsync = _ => Task.CompletedTask;
     private Func<HttpContext, Task> onPrepareResponseAsync = _ => Task.CompletedTask;
+    private Func<ImageCommandContext, DecoderOptions, Stream, bool, Task<FormattedImage?>> onLoadAsync = (_, _, _, _) => Task.FromResult(default(FormattedImage));
 
     /// <summary>
     /// Gets or sets the base library configuration.
@@ -198,6 +199,17 @@ public class ImageSharpMiddlewareOptions
         {
             Guard.NotNull(value, nameof(this.OnPrepareResponseAsync));
             this.onPrepareResponseAsync = value;
+        }
+    }
+
+    public Func<ImageCommandContext, DecoderOptions, Stream, bool, Task<FormattedImage?>> OnLoadAsync
+    {
+        get => this.onLoadAsync;
+
+        set
+        {
+            Guard.NotNull(value, nameof(this.OnLoadAsync));
+            this.onLoadAsync = value;
         }
     }
 
