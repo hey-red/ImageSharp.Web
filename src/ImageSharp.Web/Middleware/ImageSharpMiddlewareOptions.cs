@@ -202,6 +202,9 @@ public class ImageSharpMiddlewareOptions
         }
     }
 
+    /// <summary>
+    /// Gets or sets the additional processing method.
+    /// </summary>
     public Func<ImageCommandContext, DecoderOptions, Stream, bool, Task<FormattedImage?>> OnLoadAsync
     {
         get => this.onLoadAsync;

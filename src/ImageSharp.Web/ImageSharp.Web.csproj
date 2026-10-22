@@ -11,6 +11,7 @@
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
     <PackageTags>Image Middleware Resize Crop Gif Jpg Jpeg Bitmap Png WebP Tiff Core Cache ASP</PackageTags>
     <Description>ImageSharp Middleware for serving images via a url based API.</Description>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
   <!--  This enables the nullable analysis and treats all nullable warnings as error-->
@@ -38,19 +39,18 @@
   </Choose>
 
   <ItemGroup>
-    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
-    <None Include="..\..\shared-infrastructure\branding\icons\imagesharp.web\sixlabors.imagesharp.web.128.png" Pack="true" PackagePath="" />
-    <None Include="..\..\SixLabors.ImageSharp.Web.props" Pack="true" PackagePath="build" />
+    <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
+    <None Include="..\..\shared-infrastructure\branding\icons\imagesharp.web\sixlabors.imagesharp.web.128.png" Pack="true" PackagePath=""/>
+    <None Include="..\..\SixLabors.ImageSharp.Web.props" Pack="true" PackagePath="build"/>
   </ItemGroup>
 
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.1" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="4.1.3" />
-    <PackageReference Update="SixLabors.Licensing" Version="1.0.3" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="4.1.0" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+    <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="3.0.1"/>
+    <PackageReference Include="SixLabors.ImageSharp" Version="4.1.3"/>
+    <PackageReference Update="SixLabors.Licensing" Version="1.0.3"/>
   </ItemGroup>
 
-  <Import Project="..\..\shared-infrastructure\src\SharedInfrastructure\SharedInfrastructure.projitems" Label="Shared" />
+  <Import Project="..\..\shared-infrastructure\src\SharedInfrastructure\SharedInfrastructure.projitems" Label="Shared"/>
 
 </Project>
